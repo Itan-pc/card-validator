@@ -3,7 +3,6 @@
 namespace Validate\Support;
 
 use Validate\Contracts\RouterInterface;
-use Closure;
 use Exception;
 
 class RoutesLoader
@@ -26,28 +25,6 @@ class RoutesLoader
 		$this->router = $router;
 		$this->loadRoutesFile();
 	}
-
-//	/**
-//	 * Load routes file
-//	 *
-//	 * @return void
-//	 * @throws Exception
-//	 */
-//	public function loadRoutesFile() : void
-//	{
-//		$routes = require ($this->getRoutesFile());
-//
-//		foreach ($routes as $uri => $closure) {
-//
-//			if (!$closure instanceof Closure) {
-//				throw new Exception('Value must be instance of \Closure');
-//			}
-//
-//			if (!$this->router->hasRoute($uri)) {
-//				$this->router->addRoute($uri, $closure);
-//			}
-//		}
-//	}
 
 	/**
 	 * Load routes file

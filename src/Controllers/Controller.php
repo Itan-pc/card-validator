@@ -4,7 +4,7 @@ namespace Validate\Controllers;
 
 abstract class Controller
 {
-	public function jsonResponse($code = 200, $data)
+	public function jsonResponse($data, $code = 200)
 	{
     	header_remove();
     	http_response_code($code);

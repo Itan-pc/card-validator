@@ -2,7 +2,6 @@
 
 namespace Validate\Support;
 
-use Closure;
 use Exception;
 use Validate\Contracts\RequestInterface;
 use Validate\Contracts\RouterInterface;
@@ -83,7 +82,6 @@ class Router implements RouterInterface
 	{
 		if($this->hasRoute($this->request->getUri(), $this->request->getMethod())) {
 			echo $this->callControllerAction($this->routes[$this->request->getUri()][$this->request->getMethod()]);
-//			echo $this->routes[$this->request->getUri()]->call($this);
 		} else {
 			header("HTTP/1.1 404 Not Found");
 			exit();
@@ -100,10 +98,6 @@ class Router implements RouterInterface
 		if (!class_exists($classPath)) {
 			throw new Exception("Class \"$classPath\" does not exist");
 		}
-
-//		call_user_func(function () use ($classPath, $method) {
-//			;
-//		}, $this->request);
 
 		return (new $classPath)->$method($this->request);
 	}

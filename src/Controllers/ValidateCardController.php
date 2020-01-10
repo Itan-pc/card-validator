@@ -19,16 +19,16 @@ class ValidateCardController extends Controller
 		$validator = new CardRequestValidate($request);
 
 		if (!$validator->validate()) {
-			return $this->jsonResponse(422, ['errors' => $validator->getErrors()]);
+			return $this->jsonResponse(['errors' => $validator->getErrors()], 422);
 		}
 
 		$cardValidate = new LuhnCardValidate();
 		$cardNumber = $request->getParam('cardnumber');
 
 		if ($cardValidate->validate($cardNumber)) {
-			return $this->jsonResponse(200, ['message' => "Card number \"$cardNumber\" is valid"]);
+			return $this->jsonResponse(['message' => "Card number \"$cardNumber\" is valid"]);
 		}
 
-		return $this->jsonResponse(200, ['message' => "Card number \"$cardNumber\" is invalid"]);
+		return $this->jsonResponse(['message' => "Card number \"$cardNumber\" is invalid"]);
 	}
 }
